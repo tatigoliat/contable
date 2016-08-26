@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'apellidosresponsable')->textInput()->label('Apellidos'); ?>
 
-    <?= $form->field($model, 'telefono')->textInput()->label('Telefono');  ?>
+    <?= $form->field($model, 'telefono')->textInput(array('onKeyPress'=>'return soloNumeros(event)','maxlength'=>'10'))->label('Telefono');?>
 
 
 
@@ -35,3 +35,11 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+function soloNumeros(event){
+var key = event.keyCode ? event.keyCode : event.which ;
+
+return (key <= 40 || (key >= 48 && key <= 57) || (key >=44 && key<=46));
+}
+</script>

@@ -19,7 +19,7 @@ class PlancuentaSearch extends Plancuenta
     {
         return [
             [['pkplancuenta', 'fkempresa', 'fknaturaleza', 'tipopago', 'tiporecurso'], 'integer'],
-            [['descripcionplancuenta', 'codigocuenta'], 'safe'],
+            [['descripcionplancuenta', 'codigocuenta', 'espadre'], 'safe'],
         ];
     }
 
@@ -64,7 +64,8 @@ class PlancuentaSearch extends Plancuenta
         ]);
 
         $query->andFilterWhere(['like', 'descripcionplancuenta', $this->descripcionplancuenta])
-            ->andFilterWhere(['like', 'codigocuenta', $this->codigocuenta]);
+            ->andFilterWhere(['like', 'codigocuenta', $this->codigocuenta])
+            ->andFilterWhere(['like', 'espadre', $this->espadre]);
 
         return $dataProvider;
     }

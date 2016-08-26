@@ -14,6 +14,7 @@ use Yii;
  * @property string $codigocuenta
  * @property integer $tipopago
  * @property integer $tiporecurso
+ * @property string $espadre
  */
 class Plancuenta extends \yii\db\ActiveRecord
 {
@@ -31,10 +32,11 @@ class Plancuenta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['descripcionplancuenta', 'fkempresa', 'fknaturaleza', 'codigocuenta', 'tipopago', 'tiporecurso'], 'required'],
+            [['descripcionplancuenta', 'fkempresa', 'fknaturaleza', 'codigocuenta', 'espadre'], 'required'],
             [['fkempresa', 'fknaturaleza', 'tipopago', 'tiporecurso'], 'integer'],
             [['descripcionplancuenta'], 'string', 'max' => 120],
-            [['codigocuenta'], 'string', 'max' => 12]
+            [['codigocuenta'], 'string', 'max' => 12],
+            [['espadre'], 'string', 'max' => 11]
         ];
     }
 
@@ -51,6 +53,7 @@ class Plancuenta extends \yii\db\ActiveRecord
             'codigocuenta' => Yii::t('app', 'Codigocuenta'),
             'tipopago' => Yii::t('app', 'Tipopago'),
             'tiporecurso' => Yii::t('app', 'Tiporecurso'),
+            'espadre' => Yii::t('app', 'Espadre'),
         ];
     }
 }

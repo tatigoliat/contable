@@ -18,21 +18,32 @@ use yii\helpers\Url;
         $Naturaleza= ArrayHelper::map(\app\models\Naturaleza::find()->all(), 'idnaturaleza', 'descripcionnaturaleza');
         echo $form->field($model, 'fknaturaleza')->dropDownList($Naturaleza,
         [
-            'prompt'=>'Porfavor elija una',
+            'prompt'=>'Porfavor elija una...',
         ]
         )->label('Naturaleza');
 
     ?>
 
-    <?= $form->field($model, 'codigocuenta')->textInput(['maxlength' => true])->label('Codigo Contable'); ?>
+    <?= $form->field($model, 'codigocuenta')->textInput(['placeholder' => '11020000000', 'onKeyPress'=>'return soloNumeros(event)', 'maxlength' => 11])->label('Codigo Contable'); ?>
 
-    <?= $form->field($model, 'descripcionplancuenta')->textInput(['maxlength' => true])->label('Descripcion'); ?>
+    <?= $form->field($model, 'descripcionplancuenta')->textInput(['placeholder' => 'Indique una descripcion', 'maxlength' => true])->label('Descripcion'); ?>
 
-    <?= $form->field($model, 'fkempresa')->textInput()->label('Empresa'); ?>
+  <?php
+    $Empresa= ArrayHelper::map(\app\models\Empresa::find()->all(), 'codigoempresa', 'nombreempresa');
+    echo $form->field($model, 'fkempresa')->dropDownList($Empresa,
+    [
+        'prompt'=>'Porfavor elija una...',
+    ]
+    )->label('Empresa');
 
-    <?= $form->field($model, 'tipopago')->textInput() ?>
+?>
 
-    <?= $form->field($model, 'tiporecurso')->textInput() ?>
+    <?php
+        $lista=['SI'=>'SI',
+                'NO'=>'NO'];
+        echo $form->field($model, 'espadre')->dropdownList($lista, ['prompt'=>'Seleccione...','id'=>'espadre']); ?>
+
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -41,3 +52,10 @@ use yii\helpers\Url;
     <?php ActiveForm::end(); ?>
 
 </div>
+<script>
+function soloNumeros(event){
+var key = event.keyCode ? event.keyCode : event.which ;
+
+return (key <= 40 || (key >= 48 && key <= 57) || (key >=44 && key<=46));
+}
+</script>

@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'mhaber',
             'fknaturaleza',
             'reversado',
+            'concepto',
         ],
     ]) ?>
 

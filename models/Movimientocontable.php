@@ -16,6 +16,7 @@ use Yii;
  * @property double $mhaber
  * @property integer $fknaturaleza
  * @property integer $reversado
+ * @property string $concepto
  */
 class Movimientocontable extends \yii\db\ActiveRecord
 {
@@ -36,7 +37,8 @@ class Movimientocontable extends \yii\db\ActiveRecord
             [['fecha', 'fechareverso', 'fkcuentacontable', 'fkempresa', 'mdebe', 'mhaber', 'fknaturaleza', 'reversado'], 'required'],
             [['fecha', 'fechareverso'], 'safe'],
             [['fkcuentacontable', 'fkempresa', 'fknaturaleza', 'reversado'], 'integer'],
-            [['mdebe', 'mhaber'], 'number']
+            [['mdebe', 'mhaber'], 'number'],
+            [['concepto'], 'string', 'max' => 160]
         ];
     }
 
@@ -55,6 +57,7 @@ class Movimientocontable extends \yii\db\ActiveRecord
             'mhaber' => Yii::t('app', 'Mhaber'),
             'fknaturaleza' => Yii::t('app', 'Fknaturaleza'),
             'reversado' => Yii::t('app', 'Reversado'),
+            'concepto' => Yii::t('app', 'Concepto'),
         ];
     }
 }

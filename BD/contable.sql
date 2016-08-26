@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-08-2016 a las 12:59:32
+-- Tiempo de generación: 26-08-2016 a las 01:39:17
 -- Versión del servidor: 5.5.49-0+deb8u1
 -- Versión de PHP: 5.6.20-0+deb8u1
 
@@ -54,7 +54,14 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `rifempresa` varchar(120) NOT NULL,
   `telefono` varchar(16) NOT NULL,
   `correoempresa` varchar(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`codigoempresa`, `cedulaempresa`, `nombreempresa`, `nombresresponsable`, `apellidosresponsable`, `rifempresa`, `telefono`, `correoempresa`) VALUES
+(1, 19644068, 'Helados sabrositos C.A.', 'Tahiris', 'Goliat', 'J-19644068-9', '444', 'goliat2107@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -71,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `movimientocontable` (
   `mdebe` float NOT NULL,
   `mhaber` float NOT NULL,
   `fknaturaleza` int(11) NOT NULL,
-  `reversado` int(11) NOT NULL
+  `reversado` int(11) NOT NULL,
+  `concepto` varchar(160) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -106,9 +114,21 @@ CREATE TABLE IF NOT EXISTS `plancuenta` (
   `fkempresa` int(11) NOT NULL,
   `fknaturaleza` int(11) NOT NULL,
   `codigocuenta` varchar(12) NOT NULL,
-  `tipopago` int(11) NOT NULL,
-  `tiporecurso` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tipopago` int(11) DEFAULT NULL,
+  `tiporecurso` int(11) DEFAULT NULL,
+  `espadre` varchar(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `plancuenta`
+--
+
+INSERT INTO `plancuenta` (`pkplancuenta`, `descripcionplancuenta`, `fkempresa`, `fknaturaleza`, `codigocuenta`, `tipopago`, `tiporecurso`, `espadre`) VALUES
+(1, 'Inversiones temporales', 1, 1, '11020101001', 1, 1, 'NO'),
+(2, 'Caja Chica', 1, 1, '11020000000', 1, 1, 'SI'),
+(3, 'Activo Circulante', 1, 2, '10000000000', 1, 1, 'SI'),
+(5, 'Banco', 1, 1, '11020100000', NULL, NULL, 'SI'),
+(6, 'Depositos Especiales', 1, 1, '11020101000', NULL, NULL, 'SI');
 
 --
 -- Índices para tablas volcadas
@@ -157,7 +177,7 @@ MODIFY `idcuentac` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-MODIFY `codigoempresa` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `codigoempresa` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `movimientocontable`
 --
@@ -172,7 +192,7 @@ MODIFY `idnaturaleza` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT
 -- AUTO_INCREMENT de la tabla `plancuenta`
 --
 ALTER TABLE `plancuenta`
-MODIFY `pkplancuenta` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `pkplancuenta` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

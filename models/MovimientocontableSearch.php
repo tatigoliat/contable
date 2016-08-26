@@ -19,7 +19,7 @@ class MovimientocontableSearch extends Movimientocontable
     {
         return [
             [['idmovimientocontable', 'fkcuentacontable', 'fkempresa', 'fknaturaleza', 'reversado'], 'integer'],
-            [['fecha', 'fechareverso'], 'safe'],
+            [['fecha', 'fechareverso', 'concepto'], 'safe'],
             [['mdebe', 'mhaber'], 'number'],
         ];
     }
@@ -67,6 +67,8 @@ class MovimientocontableSearch extends Movimientocontable
             'fknaturaleza' => $this->fknaturaleza,
             'reversado' => $this->reversado,
         ]);
+
+        $query->andFilterWhere(['like', 'concepto', $this->concepto]);
 
         return $dataProvider;
     }

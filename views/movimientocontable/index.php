@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MovimientocontableSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Registros Contables');
+$this->title = Yii::t('app', 'Movimientocontables');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="movimientocontable-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Resgistrar Asientos'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Movimientocontable'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'mhaber',
             // 'fknaturaleza',
             // 'reversado',
+            // 'concepto',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

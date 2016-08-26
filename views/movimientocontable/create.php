@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Movimientocontable */
 
-$this->title = Yii::t('app', 'Registro de Asientos Contables');
+$this->title = Yii::t('app', 'Create Movimientocontable');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Movimientocontables'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
