@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CuentacontableSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Cuentacontables');
+$this->title = Yii::t('app', 'Cuentas contables');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cuentacontable-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Cuentacontable'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Registrar una Cuenta contable'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,12 +24,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute' => 'idcuentac',
+                'label'=>'ID',
+            ],
+            [
+                'attribute' => 'codigocuentacontable',
+                'label'=>'Codigo Cuenta',
+            ],
+            [
+                'attribute' => 'descripcioncuenta',
+                'label'=>'Descripcion Contable',
+            ],
+            [
+                'attribute' => 'debe',
+                'label'=>'Por el Debe',
+            ],
+            [
+                'attribute' => 'haber',
+                'label'=>'Por el Haber',
+            ],
 
-            'idcuentac',
-            'codigocuentacontable',
-            'debe',
-            'haber',
-            'idempresa',
+            // 'idempresa',
             // 'idplancuentacontable',
             // 'numhijos',
             // 'saldo',

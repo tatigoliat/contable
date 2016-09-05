@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Empresa;
+use app\models\Plancuenta;
+
+$Empresa =  new Empresa;
+$Plancuenta =  new Plancuenta;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Cuentacontable */
@@ -19,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->idcuentac], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('app', 'Esta seguro que desea eliminar el registro?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,16 +33,52 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idcuentac',
-            'codigocuentacontable',
-            'debe',
-            'haber',
-            'idempresa',
-            'idplancuentacontable',
-            'numhijos',
-            'saldo',
-            'saldoinicialdebe',
-            'saldoinicialhaber',
+          [
+            'attribute' => 'idcuentac',
+            'label'=>'Id',
+          ],
+
+          [
+            'attribute' => 'idempresa',
+            'value' =>  Empresa::findOne($model->idempresa)->nombreempresa,
+            'label'=>'Empresa',
+          ],
+
+          [
+            'attribute' => 'idplancuentacontable',
+            'value' =>  Plancuenta::findOne($model->idplancuentacontable)->descripcionplancuenta,
+            'label'=>'Plan de Cuenta',
+          ],
+
+          [
+            'attribute' => 'codigocuentacontable',
+            'label'=>'Codigo',
+          ],
+          [
+            'attribute' => 'descripcioncuenta',
+            'label'=>'Descripcion',
+          ],
+          [
+            'attribute' => 'debe',
+            'label'=>'Monto por el Debe',
+          ],
+          [
+            'attribute' => 'haber',
+            'label'=>'Monto por el Haber',
+          ],
+            [
+              'attribute' => 'saldo',
+              'label'=>'Saldo',
+            ],
+            [
+              'attribute' => 'saldoinicialdebe',
+              'label'=>'Saldo Inicial por el Debe',
+            ],
+            [
+              'attribute' => 'saldoinicialhaber',
+              'label'=>'Saldo Inicial por el Haber',
+            ],
+
         ],
     ]) ?>
 

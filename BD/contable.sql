@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-08-2016 a las 01:39:17
+-- Tiempo de generación: 05-09-2016 a las 18:37:27
 -- Versión del servidor: 5.5.49-0+deb8u1
 -- Versión de PHP: 5.6.20-0+deb8u1
 
@@ -29,15 +29,23 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `cuentacontable` (
 `idcuentac` bigint(20) unsigned NOT NULL,
   `codigocuentacontable` varchar(12) NOT NULL,
+  `descripcioncuenta` varchar(255) NOT NULL,
   `debe` float NOT NULL,
   `haber` int(11) NOT NULL,
   `idempresa` int(11) NOT NULL,
   `idplancuentacontable` int(11) NOT NULL,
-  `numhijos` int(11) NOT NULL,
+  `numhijos` int(11) DEFAULT '1',
   `saldo` float NOT NULL,
-  `saldoinicialdebe` float NOT NULL,
-  `saldoinicialhaber` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `saldoinicialdebe` float DEFAULT '0',
+  `saldoinicialhaber` float DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cuentacontable`
+--
+
+INSERT INTO `cuentacontable` (`idcuentac`, `codigocuentacontable`, `descripcioncuenta`, `debe`, `haber`, `idempresa`, `idplancuentacontable`, `numhijos`, `saldo`, `saldoinicialdebe`, `saldoinicialhaber`) VALUES
+(2, '123', 'Inversion 2', 10000, 2000, 1, 1, 1, 800, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -92,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `naturaleza` (
 `idnaturaleza` bigint(20) unsigned NOT NULL,
   `codigonaturaleza` varchar(2) NOT NULL,
   `descripcionnaturaleza` varchar(60) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `naturaleza`
@@ -100,7 +108,9 @@ CREATE TABLE IF NOT EXISTS `naturaleza` (
 
 INSERT INTO `naturaleza` (`idnaturaleza`, `codigonaturaleza`, `descripcionnaturaleza`) VALUES
 (1, '1', 'ACTIVOS'),
-(2, '2', 'PASIVOS');
+(2, '2', 'PASIVOS'),
+(3, '3', 'Capital'),
+(4, '4', 'Orden');
 
 -- --------------------------------------------------------
 
@@ -117,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `plancuenta` (
   `tipopago` int(11) DEFAULT NULL,
   `tiporecurso` int(11) DEFAULT NULL,
   `espadre` varchar(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `plancuenta`
@@ -172,7 +182,7 @@ ALTER TABLE `plancuenta`
 -- AUTO_INCREMENT de la tabla `cuentacontable`
 --
 ALTER TABLE `cuentacontable`
-MODIFY `idcuentac` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `idcuentac` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
@@ -187,12 +197,12 @@ MODIFY `idmovimientocontable` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `naturaleza`
 --
 ALTER TABLE `naturaleza`
-MODIFY `idnaturaleza` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `idnaturaleza` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `plancuenta`
 --
 ALTER TABLE `plancuenta`
-MODIFY `pkplancuenta` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `pkplancuenta` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

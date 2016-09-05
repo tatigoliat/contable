@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->idnaturaleza], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('app', 'Esta seguro que desea eliminar el registro?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,9 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idnaturaleza',
-            'codigonaturaleza',
-            'descripcionnaturaleza',
+          [
+            'attribute' => 'idnaturaleza',
+            'label'=>'Id',
+          ],
+          [
+            'attribute' => 'codigonaturaleza',
+            'label'=>'Codigo',
+          ],
+          [
+            'attribute' => 'descripcionnaturaleza',
+            'label'=>'Descripcion',
+          ],
         ],
     ]) ?>
 

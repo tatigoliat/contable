@@ -19,11 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'codigocuentacontable') ?>
 
+    <?= $form->field($model, 'descripcioncuenta') ?>
+
     <?= $form->field($model, 'debe') ?>
 
     <?= $form->field($model, 'haber') ?>
 
-    <?= $form->field($model, 'idempresa') ?>
+    <?php // echo $form->field($model, 'idempresa') ?>
 
     <?php // echo $form->field($model, 'idplancuentacontable') ?>
 

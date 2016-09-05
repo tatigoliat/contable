@@ -9,7 +9,6 @@ use Yii;
  *
  * @property string $idcuentac
  * @property string $codigocuentacontable
- * @property string $descripcioncuenta
  * @property double $debe
  * @property integer $haber
  * @property integer $idempresa
@@ -35,11 +34,10 @@ class Cuentacontable extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['codigocuentacontable', 'descripcioncuenta', 'debe', 'haber', 'idempresa', 'idplancuentacontable','saldo'], 'required'],
+            [['codigocuentacontable', 'debe', 'haber', 'idempresa', 'idplancuentacontable', 'numhijos', 'saldo', 'saldoinicialdebe', 'saldoinicialhaber'], 'required'],
             [['debe', 'saldo', 'saldoinicialdebe', 'saldoinicialhaber'], 'number'],
             [['haber', 'idempresa', 'idplancuentacontable', 'numhijos'], 'integer'],
-            [['codigocuentacontable'], 'string', 'max' => 12],
-            [['descripcioncuenta'], 'string', 'max' => 255]
+            [['codigocuentacontable'], 'string', 'max' => 12]
         ];
     }
 
@@ -51,7 +49,6 @@ class Cuentacontable extends \yii\db\ActiveRecord
         return [
             'idcuentac' => Yii::t('app', 'Idcuentac'),
             'codigocuentacontable' => Yii::t('app', 'Codigocuentacontable'),
-            'descripcioncuenta' => Yii::t('app', 'Descripcioncuenta'),
             'debe' => Yii::t('app', 'Debe'),
             'haber' => Yii::t('app', 'Haber'),
             'idempresa' => Yii::t('app', 'Idempresa'),

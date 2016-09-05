@@ -19,7 +19,7 @@ class CuentacontableSearch extends Cuentacontable
     {
         return [
             [['idcuentac', 'haber', 'idempresa', 'idplancuentacontable', 'numhijos'], 'integer'],
-            [['codigocuentacontable'], 'safe'],
+            [['codigocuentacontable', 'descripcioncuenta'], 'safe'],
             [['debe', 'saldo', 'saldoinicialdebe', 'saldoinicialhaber'], 'number'],
         ];
     }
@@ -68,7 +68,8 @@ class CuentacontableSearch extends Cuentacontable
             'saldoinicialhaber' => $this->saldoinicialhaber,
         ]);
 
-        $query->andFilterWhere(['like', 'codigocuentacontable', $this->codigocuentacontable]);
+        $query->andFilterWhere(['like', 'codigocuentacontable', $this->codigocuentacontable])
+            ->andFilterWhere(['like', 'descripcioncuenta', $this->descripcioncuenta]);
 
         return $dataProvider;
     }
