@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Cuentacontable;
+use app\models\Empresa;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MovimientocontableSearch */
@@ -16,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Movimientocontable'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Registrar Asiento Contable'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,11 +27,36 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idmovimientocontable',
-            'fecha',
-            'fechareverso',
-            'fkcuentacontable',
-            'fkempresa',
+            [
+                'attribute' => 'idmovimientocontable',
+                'label'=>'ID',
+            ],
+
+            [
+                'attribute' => 'fecha',
+                'label'=>'Fecha',
+            ],
+
+            [
+              'attribute' => 'fkcuentacontable',
+              'value' => function($Cuentacontable){
+              $Cuentacontable = Cuentacontable::findOne($Cuentacontable->fkcuentacontable);
+              return $Cuentacontable->descripcioncuenta;
+                },
+                        'filter'=>false,
+                        'label'=>'Cuenta Contable'
+            ],
+
+            [
+              'attribute' => 'fkempresa',
+              'value' => function($Empresas){
+              $Empresa = Empresa::findOne($Empresas->fkempresa);
+              return $Empresa->nombreempresa;
+                },
+                        'filter'=>false,
+                        //'filter' => Html::activeTextInput($searchModel, 'fkempresa', ['class' => 'form-control']),
+                        'label'=>'Empresa'
+            ],
             // 'mdebe',
             // 'mhaber',
             // 'fknaturaleza',

@@ -34,7 +34,7 @@ class Movimientocontable extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fecha', 'fechareverso', 'fkcuentacontable', 'fkempresa', 'mdebe', 'mhaber', 'fknaturaleza', 'reversado'], 'required'],
+            [['fecha', 'fkcuentacontable', 'fkempresa', 'mdebe', 'mhaber'], 'required'],
             [['fecha', 'fechareverso'], 'safe'],
             [['fkcuentacontable', 'fkempresa', 'fknaturaleza', 'reversado'], 'integer'],
             [['mdebe', 'mhaber'], 'number'],

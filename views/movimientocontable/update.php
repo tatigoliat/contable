@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Movimientocontable */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
+$this->title = Yii::t('app', 'Editar Asiento Contable: ', [
     'modelClass' => 'Movimientocontable',
 ]) . ' ' . $model->idmovimientocontable;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Movimientocontables'), 'url' => ['index']];
